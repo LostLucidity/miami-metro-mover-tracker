@@ -11,11 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.title = "Miami Metromover Tracker";
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>Miami Metromover</h1>'
+            template: '<h1>{{title}}</h1><div id="map"></div>'
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
