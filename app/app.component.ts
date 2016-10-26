@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 
-declare var google: any;
 @Component({
   selector: 'my-app',
-  template: '<h1>{{title}}</h1><div id="map"></div>'
+  template: `
+  <h1>{{title}}</h1>
+  <div id="map"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs-qJ73enc1zbN3BgTcmoklWxDQF7GREk&callback=initMap"
+  async defer></script>
+  `
 })
 export class AppComponent {
-  title = "Miami Metromover Tracker"
-
-  ngOnInit(){
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
-    });
-  }
+  title = 'Miami Metromover Tracker';
 }
