@@ -8,19 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var map_service_1 = require("./map.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(mapService) {
+        this.mapService = mapService;
         this.title = 'Miami Metromover Tracker';
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "\n  <h1>{{title}}</h1>\n  <div id=\"map\"></div>\n  <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyBs-qJ73enc1zbN3BgTcmoklWxDQF7GREk&callback=initMap\"\n  async defer></script>\n  "
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
+    AppComponent.prototype.initMap = function () {
+        var _this = this;
+        this.mapService.initMap().then(function (map) {
+            _this.map = map;
+            console.log(map);
+        });
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.initMap();
+    };
     return AppComponent;
 }());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        template: "\n  <h1>{{title}}</h1>\n  <div id=\"map\"></div>\n  ",
+        providers: [map_service_1.MapService]
+    }),
+    __metadata("design:paramtypes", [map_service_1.MapService])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

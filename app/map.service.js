@@ -10,7 +10,7 @@ var MapService = (function () {
             center: { lat: -34.397, lng: 150.644 },
             zoom: 8
         });
-        return this.map;
+        return Promise.resolve(this.map);
     };
     return MapService;
 }());
